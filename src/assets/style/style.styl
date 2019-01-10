@@ -1,0 +1,91 @@
+background-color = #ededed
+border-color = #f00
+backgroundColor = #fff
+backgroundcolor2 = #ff0
+spanbackground = #f54545
+width = 100px
+width2 = 50px
+num = 100 
+list = 100 50 200px
+name = 'width'
+border-radius(val)
+	-webkit-border-radius val
+	-moz-border-radius val
+	-ms-border-radius val
+	-o-border-radius val
+	border-radius val
+//如果函数名与原生css重名，原生css会被覆盖
+// border-radius()
+// 	width:100px
+border-radius()
+	-webkit-border-radius arguments
+	-moz-border-radius arguments
+	-ms-border-radius arguments
+	-o-border-radius arguments
+	border-radius arguments
+body
+	background background-color
+	border 1px solid border-color
+	height list[0]+list[2]
+	>div.App
+		height list[2]
+		width 120px
+		background backgroundColor
+		cursor pointer
+		&:hover //&代表父级选择器div &:hover指div:hover
+			background backgroundcolor2
+		span
+		span
+		b
+			display block
+			width width2
+			height @width //@width取当前作用域的width值，当前作用于无width值将去父级width值
+			background spanbackground
+		#app
+			border 10px solid #f1f1f1
+		input[type='button']
+			padding 5px 10px
+			border 2px solid #333
+			border-radius:10px //minxin传值可以通过border-radius(10px)或border-radius:10px
+			{name} (num)px //变量需要用括号包裹,插值是在选择器或属性值中插值
+			margin-left (width/2) //带单位的变量可以做运算，运算之后依然带单位
+//冒号，分号，花括号可自由选择，加与不加效果相同,但不能混用
+.leftTest{
+	float:left;
+	width:200px;
+	height:200px;
+	text-align:center;
+	//line-height:@height;
+	background:#fff;
+	border-radius:20px;
+}
+.reduxWrap{
+	width:400px;
+	margin:0 auto;
+	overflow:hidden;
+	.addNum{
+		@extend .leftTest
+		// input[type='button'] //符号混用会报错
+		// 	border 1px solid #333
+		span{
+			line-height:30px;
+		}
+		input[type=button]{
+			outline:none;
+			padding:5px 10px;
+			border:1px solid #333;
+			display:block;
+			margin:0 auto;
+			border-radius:4px;
+			cursor:pointer;
+			&:hover{
+				background:#333;
+				color:#fff
+			}
+		}
+	}
+	.showNum{
+		@extend .leftTest	//继承只能继承根样式，不能继承子样式,@extend .leftTest合法，@extend .addNum会报错
+	}
+}
+	
