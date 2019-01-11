@@ -1,10 +1,10 @@
 import React,{ Component } from 'react';
-import shouldComponetUpdate from '../common/shoulComponentUpdate';
+import shouldComponentUpdate from '../common/shouldComponentUpdate';
 
 export default class ImmutableA extends Component{
-	constructor(props){
-		super(props);
-		this.shouldComponetUpdate = shouldComponetUpdate.bind(this);
+	constructor(props) {
+	    super(props);
+	    this.shouldComponentUpdate = shouldComponentUpdate.bind(this);
 	}
 	render(){
 		console.log('ImmutableA render')

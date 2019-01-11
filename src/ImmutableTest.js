@@ -1,27 +1,35 @@
 import React,{ Component } from 'react';
-import shouldComponetUpdate from './common/shoulComponentUpdate';
+import shouldComponentUpdate from './common/shouldComponentUpdate';
+//import { shouldComponentUpdate } from 'react-immutable-render-mixin';
 import ImmutableA from './components/ImmutableA';
 import ImmutableB from './components/ImmutableB';
+console.log(shouldComponentUpdate)
 export default class ImmutableTest extends Component{
+	constructor(props) {
+	    super(props);
+	    this.shouldComponentUpdate = shouldComponentUpdate.bind(this);
+	}
+
 	state={
 		nameA:"ImmutableA",
-		nameB:"ImmutableB"
+		nameB:{
+			name:"ImmutableB"
+		}
 	}
-	constructor(props){
-		super(props);
-		this.shouldComponetUpdate = shouldComponetUpdate.bind(this);
-	}
+	
 	changeState = ()=>{
 		this.setState({
 			nameA:"ImmutableA",
-			nameB:"ImmutableB"
+			nameB:{
+				name:"ImmutableR"
+			}
 		})
 	}
 	render(){
 		console.log('ImmutableTest render');
 		return <div>
 			<ImmutableA name={this.state.nameA} />
-			<ImmutableB name={this.state.nameB} />
+			<ImmutableB name={this.state.nameB.name} />
 			<input onClick={this.changeState} type="button" value="修改数据"/>
 		</div>
 	}
